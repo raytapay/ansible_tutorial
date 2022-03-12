@@ -1,2 +1,5 @@
+[remote]
 192.168.18.129
-localhost
+
+[local]
+localhost ansible_connection=local
