@@ -1,5 +1,5 @@
 [remote]
-192.168.18.129 ansible_ssh_user=test
+192.168.18.130 ansible_ssh_user=centos
 
 [local]
 localhost ansible_connection=local ansible_sudo_pass="DryL0Nunca"
