@@ -1,5 +1,5 @@
-[remote]
-192.168.18.130 ansible_ssh_user=centos
+[web_servers]
+192.168.18.131 ansible_ssh_user=centos apache_package=httpd php_package=php
 
 [local]
-localhost ansible_connection=local ansible_sudo_pass="DryL0Nunca"
+localhost ansible_connection=local ansible_sudo_pass="DryL0Nunca" apache_package=apache2 php_package=libapache2-mod-php
