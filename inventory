@@ -1,5 +1,5 @@
 [web_servers]
-192.168.18.145 apache_package=httpd php_package=php
+192.168.18.10 apache_package=httpd php_package=php
 
 [db_servers]
 localhost ansible_connection=local ansible_sudo_pass="DryL0Nunca" apache_package=apache2 php_package=libapache2-mod-php

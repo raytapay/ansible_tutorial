@@ -1,0 +1,55 @@
+---
+- hosts: localhost
+  #gather_facts: false
+  connection: local
+  vars:
+    systemsetup:
+      remotelogin: "On"
+      timezone: "Europe/Oslo"
+      usingnetworktime: "On"
+      sleep: 0
+      computersleep: 0
+      displaysleep: 0
+      harddisksleep: 0
+      allowpowerbuttontosleepcomputer: "Off"
+      wakeonnetworkaccess: "On"
+      restartfreeze: "On"
+      restartpowerfailure: "On"
+    
+    auth0_ui_creds:
+      auth0_ui: &auth0_ui
+        name: env_shortname
+        group_host:
+          - admin_web
+          - client_web
+          - core
+        sa_roles:
+          - roles/secretmanager.secretAccessor
+
+  tasks:
+    - name: Print output from dictionary
+      debug:
+        msg: "KEY: {{ item.key }}, VALUE: {{ item.value }}"
+      loop: "{{ systemsetup | dict2items }}"
+    
+    - name: Print all available facts
+      debug:
+        msg: "{{ ansible_facts['device_links']['ids']['sr0'][0] }}"
+
+    - name: Print before doing a dict to items
+      debug:
+        msg: "{{ auth0_ui_creds }}"
+
+    - name: Print after doing a dict to items
+      debug:
+        msg: "{{ auth0_ui_creds | dict2items }}"
+      register: test_output      
+
+    - name: Print item and value pairs
+      loop: "{{ auth0_ui_creds | dict2items }}"
+      debug:
+        msg: "{{ item.value.group_host }}"
+
+    - name: Print test output
+      debug:
+        msg: "{{ test_output['msg'][0]['value']['group_host'] }}"
